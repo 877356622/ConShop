@@ -1,7 +1,7 @@
 public class Product {//实体类
     private String productId;
     private String productName;
-    private String Price;
+    private String price;
     private String desc;
 
     public String getProductId() {
@@ -21,11 +21,11 @@ public class Product {//实体类
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public String getDesc() {

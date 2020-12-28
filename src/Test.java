@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -24,6 +23,15 @@ public class Test {
             for (User user : users) {
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登录成功");
+                    InputStream inputStream=Class.forName("Test").getResourceAsStream("/products.xlsx");
+                    ReadProductExcel readProductExcel = new ReadProductExcel(inputStream);
+                    Product products[] = readProductExcel.readProductExcel(inputStream);
+                    for(Product product:products){
+                        System.out.println("商品号码：" + product.getProductId());
+                        System.out.println("商品名称：" + product.getProductName());
+                        System.out.println("商品价格：" + product.getPrice());
+                        System.out.println("商品描述：" + product.getDesc());
+                    }
                     i = 1;
                     bo=false;
                     break;
