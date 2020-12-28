@@ -23,26 +23,49 @@ public class Test {
             for (User user : users) {
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登录成功");
+
                     InputStream inproduct=Class.forName("Test").getResourceAsStream("/products.xlsx");
-
                     ReadProductExcel readProductExcel = new ReadProductExcel(inproduct);
-                    Product products[] = readProductExcel.readProductExcel(inproduct);
-
+                    Product products[] = readProductExcel.getAllProduct(inproduct);
                     printProduct(products);  //打印商品信息
 
+                    inproduct=null;
+                    inproduct=Class.forName("Test").getResourceAsStream("/products.xlsx");
                     System.out.println("请输入商品ID把商品加入购物车");
                     String pId=sc.next();
 
                     //创建购物车数组：存的是商品
                     Product carts[]=new Product[5];
-                    for(Product product:products){
-                        if(pId.equals(product.getProductId())){
-                            carts[0]=product;
+                    int count=0;
+
+                    //根据此ID去Excel中查找商品
+                    Product product=readProductExcel.getProductById(pId,inproduct);
+                    if (product!=null){
+                        carts[count++]=product;
+                    }
+
+                    while(true) {
+                        System.out.println("继续购买商品请按1");
+                        System.out.println("查看购物车请按2");
+
+                        int choose = sc.nextInt();
+                        if (choose == 1) {
+                            printProduct(products);
+                            inproduct = null;
+                            inproduct = Class.forName("Test").getResourceAsStream("/products.xlsx");
+                            System.out.println("请输入商品ID把商品加入购物车");
+                            pId = sc.next();
+                            product = readProductExcel.getProductById(pId, inproduct);
+                            if (product != null) {
+                                carts[count++] = product;
+                            }
+                        } else if (choose == 2) {
+                            System.out.println("购物车信息");
+                            printProduct(carts);
+                            break;
                         }
                     }
 
-                    System.out.println("购物车信息");
-                    printProduct(carts);
                     i = 1;
                     bo=false;
                     break;
