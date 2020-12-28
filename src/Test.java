@@ -24,21 +24,25 @@ public class Test {
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登录成功");
                     InputStream inproduct=Class.forName("Test").getResourceAsStream("/products.xlsx");
+
                     ReadProductExcel readProductExcel = new ReadProductExcel(inproduct);
                     Product products[] = readProductExcel.readProductExcel(inproduct);
-                    for(Product product:products){
-                        System.out.print(product.getProductId());
-                        System.out.print("\t" + product.getProductName());
-                        System.out.print("\t" + product.getPrice());
-                        System.out.println("\t" + product.getDesc());
-                    }
+
+                    printProduct(products);  //打印商品信息
+
                     System.out.println("请输入商品ID把商品加入购物车");
                     String pId=sc.next();
 
                     //创建购物车数组：存的是商品
                     Product carts[]=new Product[5];
+                    for(Product product:products){
+                        if(pId.equals(product.getProductId())){
+                            carts[0]=product;
+                        }
+                    }
 
-
+                    System.out.println("购物车信息");
+                    printProduct(carts);
                     i = 1;
                     bo=false;
                     break;
@@ -46,6 +50,17 @@ public class Test {
             }
             if (i == 0) {
                 System.out.println("用户名或密码错误");
+            }
+        }
+    }
+    public static void printProduct(Product products[]){
+        for(Product product:products){
+            if(product.getProductId().isEmpty()) {
+            }else{
+                System.out.print(product.getProductId());
+                System.out.print("\t" + product.getProductName());
+                System.out.print("\t" + product.getPrice());
+                System.out.println("\t" + product.getDesc());
             }
         }
     }
