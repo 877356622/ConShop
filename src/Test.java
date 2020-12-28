@@ -23,15 +23,22 @@ public class Test {
             for (User user : users) {
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登录成功");
-                    InputStream inputStream=Class.forName("Test").getResourceAsStream("/products.xlsx");
-                    ReadProductExcel readProductExcel = new ReadProductExcel(inputStream);
-                    Product products[] = readProductExcel.readProductExcel(inputStream);
+                    InputStream inproduct=Class.forName("Test").getResourceAsStream("/products.xlsx");
+                    ReadProductExcel readProductExcel = new ReadProductExcel(inproduct);
+                    Product products[] = readProductExcel.readProductExcel(inproduct);
                     for(Product product:products){
-                        System.out.println("商品号码：" + product.getProductId());
-                        System.out.println("商品名称：" + product.getProductName());
-                        System.out.println("商品价格：" + product.getPrice());
-                        System.out.println("商品描述：" + product.getDesc());
+                        System.out.print(product.getProductId());
+                        System.out.print("\t" + product.getProductName());
+                        System.out.print("\t" + product.getPrice());
+                        System.out.println("\t" + product.getDesc());
                     }
+                    System.out.println("请输入商品ID把商品加入购物车");
+                    String pId=sc.next();
+
+                    //创建购物车数组：存的是商品
+                    Product carts[]=new Product[5];
+
+
                     i = 1;
                     bo=false;
                     break;
