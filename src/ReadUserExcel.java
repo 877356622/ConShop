@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
-public class ReadExcel {
-    public ReadExcel(InputStream in) {
+public class ReadUserExcel {
+    public ReadUserExcel(InputStream in) {
     }
     /*
         readExcel是什么方法？成员方法

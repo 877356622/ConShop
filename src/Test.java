@@ -15,7 +15,7 @@ public class Test {
 
             //开始读取文件
             InputStream in = Class.forName("Test").getResourceAsStream("/user.xlsx");
-            ReadExcel readExcel = new ReadExcel(in);
+            ReadUserExcel readExcel = new ReadUserExcel(in);
             User users[] = readExcel.readExcel(in);
 
             //判断用户名和密码是否正确
