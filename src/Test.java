@@ -78,8 +78,7 @@ public class Test {
     }
     public static void printProduct(Product products[]){
         for(Product product:products){
-            if(product.getProductId().isEmpty()) {
-            }else{
+            if(product!=null) {
                 System.out.print(product.getProductId());
                 System.out.print("\t" + product.getProductName());
                 System.out.print("\t" + product.getPrice());
