@@ -1,4 +1,5 @@
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Test {
@@ -25,6 +26,7 @@ public class Test {
                     System.out.println("登录成功");
 
                     int count=0;
+                    String id="1000";
                     while (true) {
                         System.out.println("购买商品请按1");
                         System.out.println("查看购物车请按2");
@@ -40,9 +42,9 @@ public class Test {
                             printProduct(carts);
                         }else if(choose==3){
                             System.out.println("结账");
+
                             Order order=new Order();
-                            order.user=user;
-                            order.product=carts;
+                            order.setUser(user);
 
                         } else if(choose==4){
                             break;

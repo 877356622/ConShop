@@ -4,6 +4,14 @@ public class Product {//实体类
     private String price;
     private String desc;
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     public String getProductId() {
         return productId;
     }
@@ -18,14 +26,6 @@ public class Product {//实体类
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getDesc() {
